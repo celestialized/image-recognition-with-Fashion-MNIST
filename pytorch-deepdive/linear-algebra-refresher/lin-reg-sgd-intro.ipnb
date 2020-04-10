@@ -1,0 +1,6 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+#path=~./   
+#os.chdir(path)
+from Ipython,display import Image

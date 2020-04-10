@@ -1,0 +1,34 @@
+{
+    # The message header contains a pair of unique identifiers for the
+    # originating session and the actual message id, in addition to the
+    # username for the process that generated the message.  This is useful in
+    # collaborative settings where multiple users may be interacting with the
+    # same kernel simultaneously, so that frontends can label the various
+    # messages in a meaningful way.
+    'header' : {
+                  'msg_id' : str, # typically UUID, must be unique per message
+                  'username' : str,
+                  'session' : str, # typically UUID, should be unique per session
+                  # ISO 8601 timestamp for when the message is created
+                  'date': str,
+                  # All recognized message type strings are listed below.
+                  'msg_type' : str,
+                  # the message protocol version
+                  'version' : '5.0',
+       },
+  
+    # In a chain of messages, the header from the parent is copied so that
+    # clients can track where messages come from.
+    'parent_header' : dict,
+  
+    # Any metadata associated with the message.
+    'metadata' : dict,
+  
+    # The actual content of the message must be a dict, whose structure
+    # depends on the message type.
+    'content' : dict,
+  
+    # optional: buffers is a list of binary data buffers for implementations
+    # that support binary extensions to the protocol.
+    'buffers': list,
+  }
